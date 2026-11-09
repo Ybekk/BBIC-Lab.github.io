@@ -1,0 +1,40 @@
+{
+  "name": "BBIC Lab",
+  "nav_name": "BBIC Lab@ZJU",
+  "email": "qiyu@zju.edu.cn",
+  "location": "Yuquan Campus, Zhejiang University",
+  "home_photo": "assets/lab/lab-group.jpg",
+  "research_areas": [
+    "Brain computer interface",
+    "Neural decoding",
+    "Artificial intelligence",
+    "Machine learning"
+  ],
+  "research_highlight": {
+    "title": "Recent Research",
+    "publication_url": "https://www.nature.com/nathumbehav/volumes/9/issues/6",
+    "cover": "assets/lab/nature-human-behaviour-june-2025.png",
+    "video": "assets/lab/videos/recent-research-1080p.mp4",
+    "poster": "assets/lab/videos/recent-research-poster.jpg",
+    "source_url": "https://www.fengshows.com/video/14ddc23a-3da1-4588-87b2-84bfd05ef2bc"
+  },
+  "paper_sharing": [
+    {
+      "date": "Nov 6",
+      "presenter": "尚运鹏",
+      "title": "Denoising Diffusion Probabilistic Models",
+      "slides": "assets/lab/paper-sharing/ddpm-shang-yunpeng.pdf",
+      "slides_format": "PDF",
+      "paper_url": "https://arxiv.org/abs/2006.11239"
+    },
+    {
+      "date": "Oct 9",
+      "presenter": "汪正毅",
+      "title": "Joint-Space Empowerment for Dexterous Coordination in Tendon-Driven Hands",
+      "slides": "assets/lab/paper-sharing/jose-wang-zhengyi.pptx",
+      "slides_format": "PPTX",
+      "slides_preview": "assets/lab/paper-sharing/jose-wang-zhengyi.pdf",
+      "paper_url": "https://proceedings.mlr.press/v306/heald26a.html"
+    }
+  ]
+}
