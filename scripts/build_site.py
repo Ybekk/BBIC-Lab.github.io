@@ -14,6 +14,21 @@ LAB = json.loads((ROOT / "site-data/lab.json").read_text(encoding="utf-8"))
 PUBLICATIONS = json.loads((ROOT / "site-data/publications.json").read_text(encoding="utf-8"))
 STUDENTS = json.loads((ROOT / "site-data/students.json").read_text(encoding="utf-8"))
 NAVIGATION = [("Home", ""), ("Events", "events"), ("Team", "team"), ("Publications", "publications"), ("Paper Reading", "paper-reading"), ("Contact us", "opportunities")]
+BUILD_YEAR = date.today().year
+VERSION_SOURCES = (
+    "scripts/build_site.py",
+    "site-data/lab.json",
+    "site-data/publications.json",
+    "site-data/students.json",
+    "assets/lab/lab.css",
+    "assets/lab/site.js",
+    "assets/lab/vendor/yale-lumen.css",
+    "assets/lab/vendor/yale-team.css",
+    "assets/lab/vendor/yale-publications.css",
+)
+SITE_VERSION = sha256(
+    str(BUILD_YEAR).encode() + b"\0" + b"\0".join((ROOT / path).read_bytes() for path in VERSION_SOURCES)
+).hexdigest()[:12]
 
 
 def e(value):
@@ -23,6 +38,11 @@ def e(value):
 def asset_url(path, prefix):
     version = sha256((ROOT / path).read_bytes()).hexdigest()[:12]
     return f"{prefix}{path}?v={version}"
+
+
+def page_url(path, prefix):
+    # GitHub Pages caches HTML for ten minutes; use one cache key per build on every lab page.
+    return f'{prefix}{path + "/" if path else ""}?v={SITE_VERSION}'
 
 
 def page(title, active, content, description):
@@ -42,13 +62,14 @@ def page(title, active, content, description):
     for label, path in NAVIGATION:
         current = ' class="active"' if path == active else ""
         aria = ' aria-current="page"' if path == active else ""
-        links.append(f'<li{current}><a href="{prefix}{path + "/" if path else ""}"{aria}>{label}</a></li>')
+        links.append(f'<li{current}><a href="{page_url(path, prefix)}"{aria}>{label}</a></li>')
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{e(description)}">
+  <meta name="bbic-site-version" content="{SITE_VERSION}">
   <title>{e(LAB['name'])} — {e(title)}</title>
   <link rel="icon" type="image/x-icon" href="{prefix}assets/lab/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="{prefix}assets/lab/favicon-16x16.png">
@@ -66,7 +87,7 @@ def page(title, active, content, description):
           <button class="navbar-toggle collapsed" type="button" aria-controls="lab-navigation" aria-expanded="false" aria-label="Toggle navigation" data-nav-toggle>
             <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{prefix}">
+          <a class="navbar-brand" href="{page_url('', prefix)}">
             <img class="lab-logo" src="{prefix}assets/lab/bbic-logo.png" width="1375" height="809" alt="">
             <span>{e(LAB['nav_name'])}</span>
           </a>
@@ -84,7 +105,7 @@ def page(title, active, content, description):
   </main>
   <footer class="lab-footer">
     <div class="container-fluid">
-      <p>© {date.today().year} {e(LAB['name'])}.</p>
+      <p>© {BUILD_YEAR} {e(LAB['name'])}.</p>
       <p>Address: Yuquan Campus, <a href="https://www.zju.edu.cn/english/">Zhejiang University</a> | Hangzhou, China
         (<a href="{e(map_url)}" target="_blank" rel="noopener noreferrer">Maps</a>,
         <a href="{e(directions_url)}" target="_blank" rel="noopener noreferrer">Directions</a>)<br>
@@ -126,7 +147,7 @@ def home():
           under the supervision of <a href="yuqi/">Yu Qi (祁玉)</a>.</p>
         <p>Our current research interests include:</p>
         <ul class="research-areas">{areas}</ul>
-        <p class="home-recruitment">We welcome students and researchers interested in these directions. <a href="opportunities/">Contact us</a> for more information.</p>
+        <p class="home-recruitment">We welcome students and researchers interested in these directions. <a href="{page_url('opportunities', './')}">Contact us</a> for more information.</p>
       </div>
     </section>
     <section class="research-feature" aria-labelledby="research-feature-title">
@@ -150,7 +171,7 @@ def home():
         <figcaption>Video: <a href="{e(highlight['source_url'])}">Fengshows</a></figcaption>
       </figure>
       </div>
-      <p class="research-more">More research: <a href="publications/">Publications</a>.</p>
+      <p class="research-more">More research: <a href="{page_url('publications', './')}">Publications</a>.</p>
     </section>
     <section class="news-block" aria-labelledby="news-title">
       <h2 class="line-through-title" id="news-title"><span>News</span></h2>
@@ -263,7 +284,7 @@ def team():
           </div>
         </div>
       </section>
-      <div class="page-copy"><p class="join-note">Interested in working with us? <a href="../opportunities/">Contact us</a>.</p></div>
+      <div class="page-copy"><p class="join-note">Interested in working with us? <a href="{page_url('opportunities', '../')}">Contact us</a>.</p></div>
     </section>'''
 
 
@@ -345,7 +366,7 @@ def opportunities():
       <h2>Get in touch</h2>
       <p>Please contact <a href="mailto:{e(LAB['email'])}">{e(LAB['email'])}</a> to discuss your interests and potential opportunities.
         A short introduction to your background, research interests, and relevant work would be helpful.</p>
-      <p>You can learn more about our work through our <a href="../publications/">publications</a>
+      <p>You can learn more about our work through our <a href="{page_url('publications', '../')}">publications</a>
         and <a href="../yuqi/">Yu Qi’s homepage</a>.</p>
       <h2>Location</h2>
       <p>Yuquan Campus, <a href="https://www.zju.edu.cn/english/">Zhejiang University</a>, Hangzhou, China.</p>
@@ -359,7 +380,7 @@ def main():
         ("team/index.html", "Team", "team", team(), "Faculty and students at BBIC Lab."),
         ("publications/index.html", "Publications", "publications", publications(), "Research publications by Yu Qi and collaborators, grouped by year from 2021 onward."),
         ("paper-reading/index.html", "Paper Reading", "paper-reading", paper_reading(), "Paper-reading sessions and presentation materials at BBIC Lab."),
-        ("opportunities/index.html", "Contact us", "opportunities", opportunities(), "Contact BBIC Lab about research opportunities and collaborations."),
+        ("opportunities/index.html", "Contact Us", "opportunities", opportunities(), "Contact BBIC Lab about research opportunities and collaborations."),
     ]
     for path, title, active, content, description in pages:
         destination = ROOT / path

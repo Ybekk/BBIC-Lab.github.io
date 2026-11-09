@@ -130,7 +130,17 @@
 .lab-site .lab-footer .design-credit a { color: inherit; }
 .lab-site .lab-footer .design-credit a:hover { color: #666; }
 
-@media (min-width: 768px) and (max-width: 991px) {
+/* Use a 125% display scale on desktop while keeping compact layouts responsive. */
+@supports (zoom: 1.25) {
+  @media (min-width: 960px) {
+    .lab-site { zoom: 1.25; min-height: 80vh; }
+  }
+  @media (min-width: 960px) and (max-width: 1199px) {
+    .lab-site .team-page .students-section .team-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
   .lab-site .navbar-nav > li > a { padding-left: 8px; padding-right: 8px; }
 }
 
