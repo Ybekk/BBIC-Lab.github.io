@@ -54,7 +54,18 @@
 .lab-site .research-areas { padding-left: 25px; margin: 16px 0; }
 .lab-site .research-areas li { margin-bottom: 5px; }
 
-.lab-site .paper-sharing { margin: 0 28px; }
+.lab-site .news-block { margin: 0 28px 50px; }
+/* Yale NLP's news layout: centered rule, a 300px scroll region, and dated bullets. */
+.lab-site .news-block .line-through-title { margin-bottom: 15px; }
+.lab-site .news-block .line-through-title span { padding: 0 10px; }
+.lab-site .news-block .line-through-title::before { border-top-color: #000; }
+.lab-site .news-scroll { padding: 0 20px; max-height: 300px; overflow-y: auto; }
+.lab-site .news-scroll:focus-visible { outline: 2px solid var(--lab-accent); outline-offset: 3px; }
+.lab-site .news-list { margin: 0; }
+.lab-site .news-entry { display: flex; margin-bottom: 10px; }
+.lab-site .news-entry dt { flex: 1; font-weight: bold; }
+.lab-site .news-entry dd { flex: 6; min-width: 0; text-align: justify; overflow-wrap: anywhere; }
+.lab-site .news-entry ul { list-style-type: disc; padding-left: 20px; }
 .lab-site .research-feature { margin: 0 28px 38px; }
 .lab-site .research-feature .research-feature-intro { margin-bottom: 18px; }
 .lab-site .research-feature .research-more { margin: 18px 0 0; }
@@ -76,6 +87,8 @@
   border-top: 1px solid #555;
 }
 .lab-site .line-through-title span { position: relative; background: white; padding: 0 14px; font-size: 32px; }
+.lab-site .reading-year + .reading-year { margin-top: 36px; }
+.lab-site .reading-year-heading { margin: 26px 0 22px; padding-bottom: 10px; border-bottom: 1px solid #ddd; color: var(--lab-accent); font-size: 26px; font-weight: 500; }
 .lab-site .sharing-list { margin: 0; }
 .lab-site .sharing-entry { display: grid; grid-template-columns: 105px minmax(0, 1fr); gap: 16px; margin: 0 12px 24px; }
 .lab-site .sharing-entry dt { font-weight: 600; }
@@ -117,6 +130,10 @@
 .lab-site .lab-footer .design-credit a { color: inherit; }
 .lab-site .lab-footer .design-credit a:hover { color: #666; }
 
+@media (min-width: 768px) and (max-width: 991px) {
+  .lab-site .navbar-nav > li > a { padding-left: 8px; padding-right: 8px; }
+}
+
 @media (max-width: 767px) {
   .lab-site .page-copy { width: 100%; }
   .lab-site .page-copy { padding: 0 5px; }
@@ -125,7 +142,7 @@
   .lab-site .home-heading-logo { width: 80px; }
   .lab-site .home-heading h1 { font-size: 28px; }
   .lab-site .home-intro .welcome-title { margin-top: 0; }
-  .lab-site .paper-sharing { margin: 0 5px; }
+  .lab-site .news-block { margin: 0 5px 50px; }
   .lab-site .research-feature { margin-left: 5px; margin-right: 5px; }
   .lab-site .research-media { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .lab-site .research-cover { width: min(60%, 240px); justify-self: center; }

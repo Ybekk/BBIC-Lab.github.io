@@ -5,6 +5,7 @@ from html import escape
 from hashlib import sha256
 from datetime import date
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlencode
 
@@ -12,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LAB = json.loads((ROOT / "site-data/lab.json").read_text(encoding="utf-8"))
 PUBLICATIONS = json.loads((ROOT / "site-data/publications.json").read_text(encoding="utf-8"))
 STUDENTS = json.loads((ROOT / "site-data/students.json").read_text(encoding="utf-8"))
-NAVIGATION = [("Home", ""), ("Team", "team"), ("Publications", "publications"), ("Opportunities", "opportunities")]
+NAVIGATION = [("Home", ""), ("Events", "events"), ("Team", "team"), ("Publications", "publications"), ("Paper Reading", "paper-reading"), ("Contact us", "opportunities")]
 
 
 def e(value):
@@ -100,25 +101,15 @@ def page(title, active, content, description):
 def home():
     areas = "".join(f"<li>{e(area)}</li>" for area in LAB["research_areas"])
     highlight = LAB["research_highlight"]
-    sharing = []
-    for item in LAB["paper_sharing"]:
-        presentation_links = []
-        preview = item.get("slides_preview")
-        if item["slides_format"].upper() == "PDF":
-            preview = preview or item["slides"]
-        if preview:
-            presentation_links.append(f'<a href="{e(preview)}" target="_blank" rel="noopener">Preview (PDF)</a>')
-        if item["slides_format"].upper() != "PDF":
-            presentation_links.append(f'<a href="{e(item["slides"])}" download>Download ({e(item["slides_format"])})</a>')
-        sharing.append(f'''        <div class="sharing-entry">
-          <dt>{e(item['date'])}</dt>
-          <dd>
-            <p>Presenter and topic:</p>
-            <p><span lang="zh-CN">{e(item['presenter'])}</span>: {e(item['title'])}</p>
-            <p>{' · '.join(presentation_links)} ·
-              <a href="{e(item['paper_url'])}">Original paper</a></p>
-          </dd>
-        </div>''')
+    news = []
+    for item in LAB["news"]:
+        text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", e(item["text"]))
+        link = f' <a href="{e(item["link"])}">[{e(item["link_label"])}]</a>' if item.get("link") else ''
+        news.append(f'''          <div class="news-entry">
+            <dt>{e(item['date'])}</dt>
+            <dd><ul><li>{text}{link}</li></ul></dd>
+          </div>''')
+    news_html = "\n".join(news)
     return f'''    <section class="home-intro" aria-labelledby="lab-title">
       <header class="home-heading">
         <img class="home-heading-logo" src="assets/lab/bbic-logo.png" width="1375" height="809" alt="BBIC Lab logo">
@@ -135,7 +126,7 @@ def home():
           under the supervision of <a href="yuqi/">Yu Qi (祁玉)</a>.</p>
         <p>Our current research interests include:</p>
         <ul class="research-areas">{areas}</ul>
-        <p class="home-recruitment">We welcome students and researchers interested in these directions. See our <a href="opportunities/">opportunities</a> for more information.</p>
+        <p class="home-recruitment">We welcome students and researchers interested in these directions. <a href="opportunities/">Contact us</a> for more information.</p>
       </div>
     </section>
     <section class="research-feature" aria-labelledby="research-feature-title">
@@ -161,11 +152,49 @@ def home():
       </div>
       <p class="research-more">More research: <a href="publications/">Publications</a>.</p>
     </section>
-    <section class="paper-sharing" aria-labelledby="paper-sharing-title">
-      <h2 class="line-through-title" id="paper-sharing-title"><span>Paper Sharing</span></h2>
-      <dl class="sharing-list">
-{chr(10).join(sharing)}
-      </dl>
+    <section class="news-block" aria-labelledby="news-title">
+      <h2 class="line-through-title" id="news-title"><span>News</span></h2>
+      <div class="news-scroll" role="region" aria-label="Lab news" tabindex="0">
+        <dl class="news-list">
+{news_html}
+        </dl>
+      </div>
+    </section>'''
+
+
+def paper_reading():
+    sharing_by_year = {}
+    for item in LAB["paper_sharing"]:
+        presentation_links = []
+        preview = item.get("slides_preview")
+        if item["slides_format"].upper() == "PDF":
+            preview = preview or item["slides"]
+        if preview:
+            presentation_links.append(f'<a href="../{e(preview)}" target="_blank" rel="noopener">Preview (PDF)</a>')
+        if item["slides_format"].upper() != "PDF":
+            presentation_links.append(f'<a href="../{e(item["slides"])}" download>Download ({e(item["slides_format"])})</a>')
+        sharing_by_year.setdefault(item["year"], []).append(f'''        <div class="sharing-entry">
+          <dt>{e(item['date'])}</dt>
+          <dd>
+            <p>Presenter and topic:</p>
+            <p><span lang="zh-CN">{e(item['presenter'])}</span>: {e(item['title'])}</p>
+            <p>{' · '.join(presentation_links)} ·
+              <a href="{e(item['paper_url'])}">Original paper</a></p>
+          </dd>
+        </div>''')
+    year_sections = []
+    for year in sorted(sharing_by_year, reverse=True):
+        sharing_html = "\n".join(sharing_by_year[year])
+        year_sections.append(f'''      <section class="reading-year" aria-labelledby="reading-year-{e(year)}">
+        <h2 class="reading-year-heading" id="reading-year-{e(year)}">{e(year)}</h2>
+        <dl class="sharing-list">
+{sharing_html}
+        </dl>
+      </section>''')
+    sections_html = "\n".join(year_sections)
+    return f'''    <section class="page-copy paper-reading-page" aria-labelledby="paper-reading-title">
+      <h1 id="paper-reading-title">Paper Reading</h1>
+{sections_html}
     </section>'''
 
 
@@ -234,7 +263,7 @@ def team():
           </div>
         </div>
       </section>
-      <div class="page-copy"><p class="join-note">Interested in working with us? See <a href="../opportunities/">opportunities</a>.</p></div>
+      <div class="page-copy"><p class="join-note">Interested in working with us? <a href="../opportunities/">Contact us</a>.</p></div>
     </section>'''
 
 
@@ -297,9 +326,16 @@ def publications():
     </section>'''
 
 
+def events():
+    return '''    <section class="page-copy events-page" aria-labelledby="events-title">
+      <h1 id="events-title">Events</h1>
+      <p>Lab events and activities will be announced here.</p>
+    </section>'''
+
+
 def opportunities():
-    return f'''    <section class="page-copy opportunities-page" aria-labelledby="opportunities-title">
-      <h1 id="opportunities-title">Opportunities</h1>
+    return f'''    <section class="page-copy opportunities-page" aria-labelledby="contact-title">
+      <h1 id="contact-title">Contact us</h1>
       <p>We welcome motivated PhD and master’s students, postdoctoral researchers, and research assistants
         interested in neural signal processing, machine learning, and brain-inspired intelligence.</p>
       <h2>Research with us</h2>
@@ -319,9 +355,11 @@ def opportunities():
 def main():
     pages = [
         ("index.html", "Home", "", home(), "BBIC Lab: brain-computer interfaces, neural decoding, and brain-inspired intelligence."),
+        ("events/index.html", "Events", "events", events(), "Events and activities at BBIC Lab."),
         ("team/index.html", "Team", "team", team(), "Faculty and students at BBIC Lab."),
         ("publications/index.html", "Publications", "publications", publications(), "Research publications by Yu Qi and collaborators, grouped by year from 2021 onward."),
-        ("opportunities/index.html", "Opportunities", "opportunities", opportunities(), "Research opportunities at BBIC Lab."),
+        ("paper-reading/index.html", "Paper Reading", "paper-reading", paper_reading(), "Paper-reading sessions and presentation materials at BBIC Lab."),
+        ("opportunities/index.html", "Contact us", "opportunities", opportunities(), "Contact BBIC Lab about research opportunities and collaborations."),
     ]
     for path, title, active, content, description in pages:
         destination = ROOT / path

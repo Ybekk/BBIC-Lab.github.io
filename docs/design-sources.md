@@ -8,6 +8,13 @@ The upstream [README](https://github.com/yale-nlp/yale-nlp.github.io/blob/gh-pag
 
 The layout reference preserves the restrained navigation, centered content area, typography, blue links, and date-based news presentation. Yale's people, publications, text, photographs, logos, analytics settings, and JavaScript are not part of the imported vendor assets. BBIC-specific content is maintained separately.
 
+The homepage News section follows the inline CSS on [Yale NLP's homepage](https://nlp.cs.yale.edu/):
+a centered title over a thin horizontal rule, a content region with a maximum
+height of 300px and vertical scrolling, 20px side padding, and dated bullet lists
+with a 1:6 date-to-event ratio. The entries are maintained in `site-data/lab.json`
+using announcements supplied by the laboratory. No Yale news text is copied,
+and `yuqi/` remains unchanged.
+
 `assets/lab/vendor/yale-lumen.css` was downloaded from [Yale NLP's compiled stylesheet](https://nlp.cs.yale.edu/css/main.css) on 2026-11-07. The original copyright comments remain in place. Local changes replace the Google Fonts import with local Source Sans Pro files and remove an unused `Open Sans` font declaration whose URLs were upstream placeholders. No other upstream CSS rules were changed.
 
 The stylesheet is loaded only by the laboratory pages. Its global Bootstrap rules must not be added to the personal homepage.
@@ -79,7 +86,8 @@ in the homepage layout; the original personal site's image remains unchanged.
 
 ## Featured research video
 
-The homepage's Recent Research section appears immediately before Paper Sharing. It links
+The homepage's Highlights section appears immediately before News. Paper Reading
+has its own page after Publications in the navigation. Highlights links
 to the [June 2025 Nature Human Behaviour cover issue](https://www.nature.com/nathumbehav/volumes/9/issues/6).
 The user-requested 18:47–22:22 excerpt from
 [Fengshows' 我·與腦（三）](https://www.fengshows.com/video/14ddc23a-3da1-4588-87b2-84bfd05ef2bc)

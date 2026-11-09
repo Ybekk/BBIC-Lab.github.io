@@ -11,15 +11,24 @@
     "Machine learning"
   ],
   "research_highlight": {
-    "title": "Recent Research",
+    "title": "Highlights",
     "publication_url": "https://www.nature.com/nathumbehav/volumes/9/issues/6",
     "cover": "assets/lab/nature-human-behaviour-june-2025.png",
     "video": "assets/lab/videos/recent-research-1080p.mp4",
     "poster": "assets/lab/videos/recent-research-poster.jpg",
     "source_url": "https://www.fengshows.com/video/14ddc23a-3da1-4588-87b2-84bfd05ef2bc"
   },
+  "news": [
+    {
+      "date": "Oct 2026",
+      "text": "🎉 Our paper “Improving Neural Decoding Performance for Language BCIs by Explicitly Modeling Context-Induced Noise” by **Yao Jia (first author)**, Xianhan Tan, Binli Luo, Yueming Wang, and Yu Qi was accepted at **NeurIPS 2026**! Congratulations to all the authors!",
+      "link": "https://neurips.cc/virtual/2026/loc/sydney/poster/148927",
+      "link_label": "NeurIPS Poster"
+    }
+  ],
   "paper_sharing": [
     {
+      "year": 2026,
       "date": "Nov 6",
       "presenter": "尚运鹏",
       "title": "Denoising Diffusion Probabilistic Models",
@@ -28,6 +37,7 @@
       "paper_url": "https://arxiv.org/abs/2006.11239"
     },
     {
+      "year": 2026,
       "date": "Oct 9",
       "presenter": "汪正毅",
       "title": "Joint-Space Empowerment for Dexterous Coordination in Tendon-Driven Hands",
