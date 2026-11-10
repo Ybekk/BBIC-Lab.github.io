@@ -2,7 +2,12 @@
   {
     "name": "Xinzhu Xiong",
     "role": "Ph.D. Student",
-    "photo": "assets/lab/students/xinzhu-xiong.jpg"
+    "photo": "assets/lab/students/xinzhu-xiong.jpg",
+     "interests": [
+      "Motor Cortex",
+      "Motor encoding",
+      "Handwriting"
+    ]
   },
   {
     "name": "Xiaomeng Yang",
