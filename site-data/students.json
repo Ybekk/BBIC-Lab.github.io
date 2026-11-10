@@ -6,7 +6,12 @@
   {
     "name": "Xiaomeng Yang",
     "role": "Ph.D. Student",
-    "photo": "assets/lab/students/xiaomeng-yang.jpg"
+    "photo": "assets/lab/students/xiaomeng-yang.jpg",
+     "interests": [
+      "Brain-Computer Interfaces",
+      "Neural Encoding and Decoding",
+      "Computational Neuroscience"
+    ]
   },
   {
     "name": "Yao Jia",
@@ -23,7 +28,12 @@
   {
     "name": "Lei Wang",
     "role": "Ph.D. Student",
-    "github": "https://github.com/wanglei3407"
+    "photo": "assets/lab/students/lei-wang.jpg",
+    "github": "https://github.com/wanglei3407",
+    "interests": [
+      "Neural Decoding",
+      "Domain Adaptation"
+    ]
   },
   {
     "name": "Jiajun Chen",
@@ -40,8 +50,8 @@
     "photo": "assets/lab/students/jie-yu.jpg",
     "github": "https://github.com/zeusyu0927",
     "interests": [
-      "Skill-based learning",
-      "Motor planning and generate"
+      "Skill-based Learning",
+      "Motor Planning and Generate"
     ]
   },
   {
@@ -64,8 +74,8 @@
     "photo": "assets/lab/students/xiaoke-yang.jpg",
     "github": "https://github.com/Ybekk",
     "interests": [
-      "Brain-Computer Interfaces",
-      "Dexterous Hand Motor Control"
+      "Dexterous Hand Motor Control",
+      "Neural Decoding"
     ]
   },
   {
