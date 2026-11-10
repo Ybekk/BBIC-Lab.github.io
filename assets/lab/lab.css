@@ -66,6 +66,7 @@
 .lab-site .news-entry dt { flex: 1; font-weight: bold; }
 .lab-site .news-entry dd { flex: 6; min-width: 0; text-align: justify; overflow-wrap: anywhere; }
 .lab-site .news-entry ul { list-style-type: disc; padding-left: 20px; }
+.lab-site .news-entry li + li { margin-top: 10px; }
 .lab-site .research-feature { margin: 0 28px 38px; }
 .lab-site .research-feature .research-feature-intro { margin-bottom: 18px; }
 .lab-site .research-feature .research-more { margin: 18px 0 0; }

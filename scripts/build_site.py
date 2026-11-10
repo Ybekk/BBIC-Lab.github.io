@@ -122,14 +122,15 @@ def page(title, active, content, description):
 def home():
     areas = "".join(f"<li>{e(area)}</li>" for area in LAB["research_areas"])
     highlight = LAB["research_highlight"]
-    news = []
+    news_by_month = {}
     for item in LAB["news"]:
         text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", e(item["text"]))
         link = f' <a href="{e(item["link"])}">[{e(item["link_label"])}]</a>' if item.get("link") else ''
-        news.append(f'''          <div class="news-entry">
-            <dt>{e(item['date'])}</dt>
-            <dd><ul><li>{text}{link}</li></ul></dd>
-          </div>''')
+        news_by_month.setdefault(item["date"], []).append(f'<li>{text}{link}</li>')
+    news = [f'''          <div class="news-entry">
+            <dt>{e(month)}</dt>
+            <dd><ul>{''.join(entries)}</ul></dd>
+          </div>''' for month, entries in news_by_month.items()]
     news_html = "\n".join(news)
     return f'''    <section class="home-intro" aria-labelledby="lab-title">
       <header class="home-heading">
