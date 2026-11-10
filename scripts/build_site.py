@@ -25,7 +25,9 @@ VERSION_SOURCES = (
     "assets/lab/vendor/yale-lumen.css",
     "assets/lab/vendor/yale-team.css",
     "assets/lab/vendor/yale-publications.css",
-)
+) + tuple(sorted({
+    student.get("photo") or "assets/lab/student-placeholder.png" for student in STUDENTS
+}))
 SITE_VERSION = sha256(
     str(BUILD_YEAR).encode() + b"\0" + b"\0".join((ROOT / path).read_bytes() for path in VERSION_SOURCES)
 ).hexdigest()[:12]
@@ -248,7 +250,7 @@ def team():
         students.append(f'''          <div class="card">
             <figure>
               <div class="avatar">
-                <img src="../{e(photo)}" alt="{e(photo_alt)}" width="150" height="150" loading="lazy">
+                <img src="{e(asset_url(photo, '../'))}" alt="{e(photo_alt)}" width="150" height="150" loading="lazy">
               </div>
             </figure>
             <div class="card-body">
