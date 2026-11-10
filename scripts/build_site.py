@@ -232,9 +232,10 @@ def team():
             details.append('<p>Profile coming soon</p>')
         icons = []
         for field, icon, label in [("homepage", "fas fa-home", "Personal homepage"),
-                                   ("github", "fab fa-github", "GitHub")]:
+                                   ("github", "fab fa-github", "GitHub"),
+                                   ("csdn", "fas fa-blog", "CSDN")]:
             if student.get(field):
-                icons.append(f'<a href="{e(student[field])}" aria-label="{e(name)}: {label}" target="_blank" rel="noopener noreferrer"><i class="{icon} icon" style="color: black;" aria-hidden="true"></i></a>')
+                icons.append(f'<a href="{e(student[field])}" aria-label="{e(name)}: {label}" title="{label}" target="_blank" rel="noopener noreferrer"><i class="{icon} icon" style="color: black;" aria-hidden="true"></i></a>')
         name_links = f'<span class="student-name-links">{"".join(icons)}</span>' if icons else ''
         interests = student.get("interests") or []
         if isinstance(interests, str):

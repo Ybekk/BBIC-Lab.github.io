@@ -10,7 +10,14 @@
   {
     "name": "Yao Jia",
     "role": "Ph.D. Student",
-    "github": "https://github.com/Jurio0304"
+    "photo": "assets/lab/students/yao-jia.jpg",
+    "github": "https://github.com/Jurio0304",
+    "csdn": "https://jurio.blog.csdn.net",
+    "interests": [
+      "Neural-Language Decoding",
+      "Multimodal Representation Learning",
+      "Online Adaptive Learning"
+    ]
   },
   {
     "name": "Lei Wang",
