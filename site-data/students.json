@@ -37,7 +37,14 @@
   },
   {
     "name": "Jiajun Chen",
-    "role": "Ph.D. Student"
+    "role": "Ph.D. Student",
+    "photo": "assets/lab/students/jiajun-chen.jpg",
+    "email": "jiajunchen@zju.edu.cn",
+    "interests": [
+      "NeuroAI",
+      "Motor Sequencing",
+      "Handwriting"
+    ]
   },
   {
     "name": "Yuan Wang",

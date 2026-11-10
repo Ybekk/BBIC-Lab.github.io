@@ -239,6 +239,8 @@ def team():
                                    ("csdn", "fas fa-blog", "CSDN")]:
             if student.get(field):
                 icons.append(f'<a href="{e(student[field])}" aria-label="{e(name)}: {label}" title="{label}" target="_blank" rel="noopener noreferrer"><i class="{icon} icon" style="color: black;" aria-hidden="true"></i></a>')
+        if student.get("email"):
+            icons.append(f'<a href="mailto:{e(student["email"])}" aria-label="{e(name)}: Email" title="{e(student["email"])}"><i class="fas fa-envelope icon" style="color: black;" aria-hidden="true"></i></a>')
         name_links = f'<span class="student-name-links">{"".join(icons)}</span>' if icons else ''
         interests = student.get("interests") or []
         if isinstance(interests, str):
