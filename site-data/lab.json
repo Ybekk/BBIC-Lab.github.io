@@ -21,13 +21,17 @@
   "news": [
      {
       "date": "Nov 2026",
-      "text": "🎉 Our paper “Brain-writing-BERT for generalizable handwriting brain-computer interface” by Xiaomeng Yang, Jie Qin, Xinzhu Xiong, Junming Zhu, Jianmin Zhang, Yueming Wang, Yu Qi was published in **Communications Biology**! Congratulations to all the authors!",
+      "text": "Our paper “Content-related motor cortical representation during attempted handwriting” by Xinzhu Xiong，Xiaodi Wu，Xiaomeng Yang，Yueming Wang，Yu Qi was accepted at **Cell reports**! Congratulations to all the authors!",
+      "text": "Our paper “Brain-writing-BERT for generalizable handwriting brain-computer interface” by Xiaomeng Yang, Jie Qin, Xinzhu Xiong, Junming Zhu, Jianmin Zhang, Yueming Wang, Yu Qi was published in **Communications Biology**! Congratulations to all the authors!",
       "link": "https://www.nature.com/articles/s42003-026-11194-9_reference.pdf",
       "link_label": "Communications Biology"
+      "text": "Our paper “Learning Neural State Transitions with a Graph-Augmented State-Space Model for High-Performance Neural Decoding” by Jie Yu, Lei Wang, Xiaomeng Yang, Xinzhu Xiong, Yueming Wang and Yu Qi was published in Neurocomputing! Congratulations to all the authors!",
+      "link": "https://www.nature.com/articles/s42003-026-11194-9_reference.pdf",
+      "link_label": "Neurocomputing"
     },
     {
       "date": "Oct 2026",
-      "text": "🎉 Our paper “Improving Neural Decoding Performance for Language BCIs by Explicitly Modeling Context-Induced Noise” by Yao Jia, Xianhan Tan, Binli Luo, Yueming Wang, and Yu Qi was accepted at **NeurIPS 2026**! Congratulations to all the authors!",
+      "text": "Our paper “Improving Neural Decoding Performance for Language BCIs by Explicitly Modeling Context-Induced Noise” by Yao Jia, Xianhan Tan, Binli Luo, Yueming Wang, and Yu Qi was accepted at **NeurIPS 2026**! Congratulations to all the authors!",
       "link": "https://neurips.cc/virtual/2026/loc/sydney/poster/148927",
       "link_label": "NeurIPS"
     }
