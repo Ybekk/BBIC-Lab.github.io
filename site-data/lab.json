@@ -31,7 +31,9 @@
     },
     {
       "date": "Nov 2026",
-      "text": "Our paper “Learning Neural State Transitions with a Graph-Augmented State-Space Model for High-Performance Neural Decoding” by Jie Yu, Lei Wang, Xiaomeng Yang, Xinzhu Xiong, Yueming Wang and Yu Qi was published in Neurocomputing! Congratulations to all the authors!"
+      "text": "Our paper “Learning Neural State Transitions with a Graph-Augmented State-Space Model for High-Performance Neural Decoding” by Jie Yu, Lei Wang, Xiaomeng Yang, Xinzhu Xiong, Yueming Wang and Yu Qi was published in **Neurocomputing**! Congratulations to all the authors!",
+      "link": "https://www.sciencedirect.com/science/article/abs/pii/S0925231226029243",
+      "link_label": "Neurocomputing"
     },
     {
       "date": "Oct 2026",
