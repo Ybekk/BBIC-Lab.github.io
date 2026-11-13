@@ -43,10 +43,19 @@
     }
   ],
   "paper_sharing": [
+      {
+      "year": 2026,
+      "date": "Nov 13",
+      "presenter": "Xiaomeng Yang",
+      "title": "Denoising Diffusion Probabilistic Models",
+      "slides": "assets/lab/paper-sharing/SCA-yang-xiaomeng.pdf",
+      "slides_format": "PDF",
+      "paper_url": "https://www.sciencedirect.com/science/article/pii/S0896627326004149"
+    },
     {
       "year": 2026,
       "date": "Nov 6",
-      "presenter": "尚运鹏",
+      "presenter": "Yunpeng Shang",
       "title": "Denoising Diffusion Probabilistic Models",
       "slides": "assets/lab/paper-sharing/ddpm-shang-yunpeng.pdf",
       "slides_format": "PDF",
@@ -55,7 +64,7 @@
     {
       "year": 2026,
       "date": "Oct 9",
-      "presenter": "汪正毅",
+      "presenter": "Zhengyi Wang",
       "title": "Joint-Space Empowerment for Dexterous Coordination in Tendon-Driven Hands",
       "slides": "assets/lab/paper-sharing/jose-wang-zhengyi.pptx",
       "slides_format": "PPTX",
