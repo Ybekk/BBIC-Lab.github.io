@@ -47,7 +47,7 @@
       "year": 2026,
       "date": "Nov 13",
       "presenter": "Xiaomeng Yang",
-      "title": "Denoising Diffusion Probabilistic Models",
+      "title": "Sparse component analysis: A method that uncovers separable computations within neural population activity",
       "slides": "assets/lab/paper-sharing/SCA-yang-xiaomeng.pdf",
       "slides_format": "PDF",
       "paper_url": "https://www.sciencedirect.com/science/article/pii/S0896627326004149"
